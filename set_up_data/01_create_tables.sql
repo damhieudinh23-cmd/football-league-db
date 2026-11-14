@@ -15,41 +15,33 @@ USE football_db;
 -- NHOM 1: CAC BANG DOC LAP
 -- ============================================================================
 
--- 1. BANG SAN VAN DONG
+-- 1. SAN VAN DONG
 CREATE TABLE IF NOT EXISTS SAN_VAN_DONG (
-    MaSan   VARCHAR(10)  PRIMARY KEY,
-    TenSan  VARCHAR(100) NOT NULL UNIQUE,
-    SucChua INT          NOT NULL CHECK (SucChua > 0),
-    DiaChi  VARCHAR(255) NOT NULL
+    MaSan   VARCHAR(10) PRIMARY KEY,
+    TenSan  VARCHAR(100) NOT NULL,
+    SucChua INT NOT NULL,
+    DiaChi  VARCHAR(255) NOT NULL,
+
+    CONSTRAINT chk_suc_chua
+        CHECK (SucChua > 0)
 ) ENGINE=InnoDB;
 
--- 2. BANG TRONG TAI
+-- 2. TRONG TAI
 CREATE TABLE IF NOT EXISTS TRONG_TAI (
-    MaTT     VARCHAR(10)  PRIMARY KEY,
+    MaTT     VARCHAR(10) PRIMARY KEY,
     TenTT    VARCHAR(100) NOT NULL,
-    QuocTich VARCHAR(50)  NOT NULL
-) ENGINE=InnoDB;
-
--- 3. BANG MUA GIAI
-CREATE TABLE IF NOT EXISTS MUA_GIAI (
-    MaMuaGiai   VARCHAR(10) PRIMARY KEY,
-    TenMuaGiai  VARCHAR(20) NOT NULL UNIQUE,
-    NgayBatDau  DATE NOT NULL,
-    NgayKetThuc DATE NOT NULL,
-
-    CONSTRAINT chk_ngay_mua_giai
-        CHECK (NgayKetThuc > NgayBatDau)
+    QuocTich VARCHAR(50) NOT NULL
 ) ENGINE=InnoDB;
 
 -- ============================================================================
 -- NHOM 2: CAC BANG CAP 1
 -- ============================================================================
 
--- 4. BANG CAU LAC BO
+-- 3. CAU LAC BO
 CREATE TABLE IF NOT EXISTS CLB (
-    MaCLB  VARCHAR(10)  PRIMARY KEY,
+    MaCLB  VARCHAR(10) PRIMARY KEY,
     TenCLB VARCHAR(100) NOT NULL UNIQUE,
-    MaSan  VARCHAR(10)  NOT NULL,
+    MaSan  VARCHAR(10) NOT NULL,
 
     CONSTRAINT fk_clb_san
         FOREIGN KEY (MaSan) REFERENCES SAN_VAN_DONG(MaSan)
@@ -60,27 +52,27 @@ CREATE TABLE IF NOT EXISTS CLB (
 -- NHOM 3: CAC BANG CAP 2
 -- ============================================================================
 
--- 5. BANG HUAN LUYEN VIEN
+-- 4. HUAN LUYEN VIEN
 CREATE TABLE IF NOT EXISTS HLV (
-    MaHLV    VARCHAR(10)  PRIMARY KEY,
+    MaHLV    VARCHAR(10) PRIMARY KEY,
     TenHLV   VARCHAR(100) NOT NULL,
-    QuocTich VARCHAR(50)  NOT NULL,
-    VaiTro   VARCHAR(50)  NOT NULL,
-    MaCLB    VARCHAR(10)  NOT NULL,
+    QuocTich VARCHAR(50) NOT NULL,
+    VaiTro   VARCHAR(50) NOT NULL,
+    MaCLB    VARCHAR(10) NOT NULL,
 
     CONSTRAINT fk_hlv_clb
         FOREIGN KEY (MaCLB) REFERENCES CLB(MaCLB)
         ON UPDATE CASCADE ON DELETE RESTRICT
 ) ENGINE=InnoDB;
 
--- 6. BANG CAU THU
+-- 5. CAU THU
 CREATE TABLE IF NOT EXISTS CAU_THU (
-    MaCT     VARCHAR(10)  PRIMARY KEY,
+    MaCT     VARCHAR(10) PRIMARY KEY,
     TenCT    VARCHAR(100) NOT NULL,
-    SoAo     INT          NOT NULL,
-    ViTri    VARCHAR(50)  NOT NULL,
-    QuocTich VARCHAR(50)  NOT NULL,
-    MaCLB    VARCHAR(10)  NOT NULL,
+    SoAo     INT NOT NULL,
+    ViTri    VARCHAR(50) NOT NULL,
+    QuocTich VARCHAR(50) NOT NULL,
+    MaCLB    VARCHAR(10) NOT NULL,
 
     CONSTRAINT chk_so_ao
         CHECK (SoAo BETWEEN 1 AND 99),
@@ -93,15 +85,14 @@ CREATE TABLE IF NOT EXISTS CAU_THU (
         ON UPDATE CASCADE ON DELETE RESTRICT
 ) ENGINE=InnoDB;
 
--- 7. BANG TRAN DAU
+-- 6. TRAN DAU
 CREATE TABLE IF NOT EXISTS TRAN_DAU (
     MaTran     VARCHAR(10) PRIMARY KEY,
-    VongDau    INT         NOT NULL,
-    NgayThiDau DATETIME    NOT NULL,
+    VongDau    INT NOT NULL,
+    NgayThiDau DATETIME NOT NULL,
     MaDoiNha   VARCHAR(10) NOT NULL,
     MaDoiKhach VARCHAR(10) NOT NULL,
     MaSan      VARCHAR(10) NOT NULL,
-    MaMuaGiai  VARCHAR(10) NOT NULL,
 
     CONSTRAINT chk_vong_dau
         CHECK (VongDau > 0),
@@ -119,10 +110,6 @@ CREATE TABLE IF NOT EXISTS TRAN_DAU (
 
     CONSTRAINT fk_td_san
         FOREIGN KEY (MaSan) REFERENCES SAN_VAN_DONG(MaSan)
-        ON UPDATE CASCADE ON DELETE RESTRICT,
-
-    CONSTRAINT fk_td_muagiai
-        FOREIGN KEY (MaMuaGiai) REFERENCES MUA_GIAI(MaMuaGiai)
         ON UPDATE CASCADE ON DELETE RESTRICT
 ) ENGINE=InnoDB;
 
@@ -130,7 +117,7 @@ CREATE TABLE IF NOT EXISTS TRAN_DAU (
 -- NHOM 4: CAC BANG QUAN HE N-N VA BANG SU KIEN TRAN DAU
 -- ============================================================================
 
--- 8. BANG PHAN CONG TRONG TAI
+-- 7. PHAN CONG TRONG TAI
 CREATE TABLE IF NOT EXISTS PHAN_CONG_TRONG_TAI (
     MaTT   VARCHAR(10) NOT NULL,
     MaTran VARCHAR(10) NOT NULL,
@@ -147,11 +134,11 @@ CREATE TABLE IF NOT EXISTS PHAN_CONG_TRONG_TAI (
         ON UPDATE CASCADE ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
--- 9. BANG THONG KE THI DAU
+-- 8. THONG KE THI DAU
 CREATE TABLE IF NOT EXISTS THONG_KE_THI_DAU (
     MaCT         VARCHAR(10) NOT NULL,
     MaTran       VARCHAR(10) NOT NULL,
-    SoPhutThiDau INT         NOT NULL DEFAULT 0,
+    SoPhutThiDau INT NOT NULL DEFAULT 0,
 
     PRIMARY KEY (MaCT, MaTran),
 
@@ -167,19 +154,16 @@ CREATE TABLE IF NOT EXISTS THONG_KE_THI_DAU (
         ON UPDATE CASCADE ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
--- 10. BANG THE PHAT
+-- 9. THE PHAT
 CREATE TABLE IF NOT EXISTS THE_PHAT (
     MaThe    VARCHAR(10) PRIMARY KEY,
     LoaiThe  VARCHAR(20) NOT NULL,
-    PhutPhat INT         NOT NULL,
+    PhutPhat INT NOT NULL,
     MaTran   VARCHAR(10) NOT NULL,
     MaCT     VARCHAR(10) NOT NULL,
 
     CONSTRAINT chk_phut_phat
         CHECK (PhutPhat BETWEEN 1 AND 120),
-
-    CONSTRAINT chk_loai_the
-        CHECK (LoaiThe IN ('VANG', 'DO')),
 
     CONSTRAINT fk_tp_tran
         FOREIGN KEY (MaTran) REFERENCES TRAN_DAU(MaTran)
@@ -190,10 +174,10 @@ CREATE TABLE IF NOT EXISTS THE_PHAT (
         ON UPDATE CASCADE ON DELETE RESTRICT
 ) ENGINE=InnoDB;
 
--- 11. BANG THAY NGUOI
+-- 10. THAY NGUOI
 CREATE TABLE IF NOT EXISTS THAY_NGUOI (
     MaTN     VARCHAR(10) PRIMARY KEY,
-    PhutThay INT         NOT NULL,
+    PhutThay INT NOT NULL,
     MaCT_Vao VARCHAR(10) NOT NULL,
     MaCT_Ra  VARCHAR(10) NOT NULL,
     MaTran   VARCHAR(10) NOT NULL,
@@ -217,10 +201,10 @@ CREATE TABLE IF NOT EXISTS THAY_NGUOI (
         ON UPDATE CASCADE ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
--- 12. BANG BAN THANG
+-- 11. BAN THANG
 CREATE TABLE IF NOT EXISTS BAN_THANG (
     MaBT         VARCHAR(10) PRIMARY KEY,
-    PhutGhiBan   INT         NOT NULL,
+    PhutGhiBan   INT NOT NULL,
     LoaiBanThang VARCHAR(50) NOT NULL,
     MaCT_GhiBan  VARCHAR(10) NOT NULL,
     MaCT_KienTao VARCHAR(10) NULL,
@@ -242,14 +226,14 @@ CREATE TABLE IF NOT EXISTS BAN_THANG (
         ON UPDATE CASCADE ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
--- 13. BANG CHAN THUONG
+-- 12. CHAN THUONG
 CREATE TABLE IF NOT EXISTS CHAN_THUONG (
-    MaCTh          VARCHAR(10)  PRIMARY KEY,
-    NgayBaoCao     DATE         NOT NULL,
+    MaCTh          VARCHAR(10) PRIMARY KEY,
+    NgayBaoCao     DATE NOT NULL,
     LoaiChanThuong VARCHAR(100) NOT NULL,
-    TGNghiDuKien   VARCHAR(50)  NOT NULL,
-    MaTran         VARCHAR(10)  NULL,
-    MaCT           VARCHAR(10)  NOT NULL,
+    TGNghiDuKien   VARCHAR(50) NOT NULL,
+    MaTran         VARCHAR(10) NULL,
+    MaCT           VARCHAR(10) NOT NULL,
 
     CONSTRAINT fk_cth_tran
         FOREIGN KEY (MaTran) REFERENCES TRAN_DAU(MaTran)
@@ -260,14 +244,14 @@ CREATE TABLE IF NOT EXISTS CHAN_THUONG (
         ON UPDATE CASCADE ON DELETE RESTRICT
 ) ENGINE=InnoDB;
 
--- 14. BANG LICH SU CHUYEN NHUONG
+-- 13. LICH SU CHUYEN NHUONG
 CREATE TABLE IF NOT EXISTS LICH_SU_CHUYEN_NHUONG (
     MaCN       VARCHAR(10) PRIMARY KEY,
-    NgayChuyen DATE        NOT NULL,
+    MuaGiai    VARCHAR(20) NOT NULL,
+    NgayChuyen DATE NOT NULL,
     MaCLBCu    VARCHAR(10) NULL,
     MaCLBMoi   VARCHAR(10) NOT NULL,
     MaCT       VARCHAR(10) NOT NULL,
-    MaMuaGiai  VARCHAR(10) NOT NULL,
 
     CONSTRAINT chk_clb_chuyen_nhuong
         CHECK (MaCLBCu IS NULL OR MaCLBCu <> MaCLBMoi),
@@ -282,16 +266,11 @@ CREATE TABLE IF NOT EXISTS LICH_SU_CHUYEN_NHUONG (
 
     CONSTRAINT fk_cn_ct
         FOREIGN KEY (MaCT) REFERENCES CAU_THU(MaCT)
-        ON UPDATE CASCADE ON DELETE RESTRICT,
-
-    CONSTRAINT fk_cn_muagiai
-        FOREIGN KEY (MaMuaGiai) REFERENCES MUA_GIAI(MaMuaGiai)
         ON UPDATE CASCADE ON DELETE RESTRICT
 ) ENGINE=InnoDB;
 
 -- ============================================================================
--- KET THUC TAO CAC BANG
+-- KIEM TRA CAC BANG DA TAO
 -- ============================================================================
 
--- Kiem tra danh sach cac bang
 SHOW TABLES;
