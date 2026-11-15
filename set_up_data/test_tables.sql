@@ -8,3 +8,5 @@ USE football_db;
 DROP TABLE IF EXISTS MUA_GIAI;
 
 SHOW TABLES;
+
+SHOW TRIGGERS FROM football_db;
