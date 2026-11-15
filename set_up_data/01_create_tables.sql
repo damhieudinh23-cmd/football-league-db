@@ -1,15 +1,11 @@
+USE FOOTBALL_DB;
 
 -- ============================================================================
 -- HE THONG QUAN LY GIAI DAU BONG DA CHUYEN NGHIEP
 -- File: 01_create_tables.sql
 -- ============================================================================
 
--- 1. KHOI TAO DATABASE
-CREATE DATABASE IF NOT EXISTS football_db
-CHARACTER SET utf8mb4
-COLLATE utf8mb4_unicode_ci;
 
-USE football_db;
 
 -- ============================================================================
 -- NHOM 1: CAC BANG DOC LAP
@@ -102,11 +98,11 @@ CREATE TABLE IF NOT EXISTS TRAN_DAU (
 
     CONSTRAINT fk_td_doinha
         FOREIGN KEY (MaDoiNha) REFERENCES CLB(MaCLB)
-        ON UPDATE CASCADE ON DELETE RESTRICT,
+        ON UPDATE RESTRICT ON DELETE RESTRICT,
 
     CONSTRAINT fk_td_doikhach
         FOREIGN KEY (MaDoiKhach) REFERENCES CLB(MaCLB)
-        ON UPDATE CASCADE ON DELETE RESTRICT,
+        ON UPDATE RESTRICT ON DELETE RESTRICT,
 
     CONSTRAINT fk_td_san
         FOREIGN KEY (MaSan) REFERENCES SAN_VAN_DONG(MaSan)
@@ -190,11 +186,11 @@ CREATE TABLE IF NOT EXISTS THAY_NGUOI (
 
     CONSTRAINT fk_tn_ctvao
         FOREIGN KEY (MaCT_Vao) REFERENCES CAU_THU(MaCT)
-        ON UPDATE CASCADE ON DELETE RESTRICT,
+        ON UPDATE RESTRICT ON DELETE RESTRICT,
 
     CONSTRAINT fk_tn_ctra
         FOREIGN KEY (MaCT_Ra) REFERENCES CAU_THU(MaCT)
-        ON UPDATE CASCADE ON DELETE RESTRICT,
+        ON UPDATE RESTRICT ON DELETE RESTRICT,
 
     CONSTRAINT fk_tn_tran
         FOREIGN KEY (MaTran) REFERENCES TRAN_DAU(MaTran)
@@ -253,20 +249,22 @@ CREATE TABLE IF NOT EXISTS LICH_SU_CHUYEN_NHUONG (
     MaCLBMoi   VARCHAR(10) NOT NULL,
     MaCT       VARCHAR(10) NOT NULL,
 
+    -- Đảm bảo không có chuyện chuyển nhượng loanh quanh trong cùng 1 đội
     CONSTRAINT chk_clb_chuyen_nhuong
         CHECK (MaCLBCu IS NULL OR MaCLBCu <> MaCLBMoi),
 
+    -- Đổi tất cả thành RESTRICT để không xung đột với CHECK và bảo vệ dữ liệu lịch sử
     CONSTRAINT fk_cn_clbcu
         FOREIGN KEY (MaCLBCu) REFERENCES CLB(MaCLB)
-        ON UPDATE CASCADE ON DELETE SET NULL,
+        ON UPDATE RESTRICT ON DELETE RESTRICT,
 
     CONSTRAINT fk_cn_clbmoi
         FOREIGN KEY (MaCLBMoi) REFERENCES CLB(MaCLB)
-        ON UPDATE CASCADE ON DELETE RESTRICT,
+        ON UPDATE RESTRICT ON DELETE RESTRICT,
 
     CONSTRAINT fk_cn_ct
         FOREIGN KEY (MaCT) REFERENCES CAU_THU(MaCT)
-        ON UPDATE CASCADE ON DELETE RESTRICT
+        ON UPDATE RESTRICT ON DELETE RESTRICT
 ) ENGINE=InnoDB;
 
 -- ============================================================================
