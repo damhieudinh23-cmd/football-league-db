@@ -1,0 +1,22 @@
+INSERT IGNORE INTO CAU_THU (MaCT, TenCT, SoAo, ViTri, QuocTich, MaCLB)
+VALUES
+    ('CT_156', 'Nguyễn Đình Triệu', 1, 'Thủ môn', 'Việt Nam', 'CLB_HP'),
+    ('CT_157', 'Nguyễn Văn Toản', 18, 'Thủ môn', 'Việt Nam', 'CLB_HP'),
+    ('CT_158', 'Phạm Văn Lượng', 36, 'Thủ môn', 'Việt Nam', 'CLB_HP'),
+    ('CT_159', 'Bùi Tiến Dụng', 4, 'Hậu vệ', 'Việt Nam', 'CLB_HP'),
+    ('CT_160', 'Nguyễn Nhật Minh', 15, 'Hậu vệ', 'Việt Nam', 'CLB_HP'),
+    ('CT_161', 'Đàm Tiến Dũng', 27, 'Hậu vệ', 'Việt Nam', 'CLB_HP'),
+    ('CT_162', 'Phạm Trung Hiếu', 17, 'Hậu vệ', 'Việt Nam', 'CLB_HP'),
+    ('CT_163', 'A Sân', 2, 'Hậu vệ', 'Việt Nam', 'CLB_HP'),
+    ('CT_164', 'Ngô Tấn Tài', 20, 'Hậu vệ', 'Việt Nam', 'CLB_HP'),
+    ('CT_165', 'Bicou Bissainthe', 25, 'Tiền vệ', 'Haiti', 'CLB_HP'),
+    ('CT_166', 'Triệu Việt Hưng', 97, 'Tiền vệ', 'Việt Nam', 'CLB_HP'),
+    ('CT_167', 'Nguyễn Hữu Sơn', 77, 'Tiền vệ', 'Việt Nam', 'CLB_HP'),
+    ('CT_168', 'Lương Hoàng Nam', 12, 'Tiền vệ', 'Việt Nam', 'CLB_HP'),
+    ('CT_169', 'Nguyễn Thái Học', 19, 'Tiền vệ', 'Việt Nam', 'CLB_HP'),
+    ('CT_170', 'Lê Mạnh Dũng', 22, 'Tiền vệ', 'Việt Nam', 'CLB_HP'),
+    ('CT_171', 'Lucao do Break', 9, 'Tiền đạo', 'Brazil', 'CLB_HP'),
+    ('CT_172', 'Paulo Pinto', 10, 'Tiền đạo', 'Brazil', 'CLB_HP'),
+    ('CT_173', 'Ngô Văn Bắc', 29, 'Tiền vệ', 'Việt Nam', 'CLB_HP'),
+    ('CT_174', 'Trần Hữu Đông Triều', 3, 'Hậu vệ', 'Việt Nam', 'CLB_HP'),
+    ('CT_175', 'Nguyễn Văn Đạt', 5, 'Hậu vệ', 'Việt Nam', 'CLB_HP');

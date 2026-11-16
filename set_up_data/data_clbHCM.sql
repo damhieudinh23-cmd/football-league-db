@@ -1,0 +1,22 @@
+INSERT IGNORE INTO CAU_THU (MaCT, TenCT, SoAo, ViTri, QuocTich, MaCLB)
+VALUES
+    ('CT_096', 'Patrik Lê Giang', 89, 'Thủ môn', 'Slovakia', 'CLB_HCM'),
+    ('CT_097', 'Nguyễn Hạ Long', 1, 'Thủ môn', 'Việt Nam', 'CLB_HCM'),
+    ('CT_098', 'Phạm Văn Cường', 25, 'Thủ môn', 'Việt Nam', 'CLB_HCM'),
+    ('CT_099', 'Ngô Tùng Quốc', 2, 'Hậu vệ', 'Việt Nam', 'CLB_HCM'),
+    ('CT_100', 'Đức Huy', 20, 'Hậu vệ', 'Việt Nam', 'CLB_HCM'),
+    ('CT_101', 'Trần Hoài Nam', 15, 'Hậu vệ', 'Việt Nam', 'CLB_HCM'),
+    ('CT_102', 'Brendon Lucas', 4, 'Hậu vệ', 'Brazil', 'CLB_HCM'),
+    ('CT_103', 'Adriano Schmidt', 3, 'Hậu vệ', 'Việt Nam', 'CLB_HCM'),
+    ('CT_104', 'Võ Huy Toàn', 6, 'Tiền vệ', 'Việt Nam', 'CLB_HCM'),
+    ('CT_105', 'Đào Quốc Gia', 21, 'Tiền vệ', 'Việt Nam', 'CLB_HCM'),
+    ('CT_106', 'Nguyễn Thanh Khôi', 16, 'Tiền vệ', 'Việt Nam', 'CLB_HCM'),
+    ('CT_107', 'Nguyễn Văn Đứng', 27, 'Tiền vệ', 'Việt Nam', 'CLB_HCM'),
+    ('CT_108', 'Nguyễn Thái Hộ', 18, 'Tiền vệ', 'Việt Nam', 'CLB_HCM'),
+    ('CT_109', 'Endrick Dos Santos', 10, 'Tiền vệ', 'Brazil', 'CLB_HCM'),
+    ('CT_110', 'Bùi Ngọc Long', 11, 'Tiền đạo', 'Việt Nam', 'CLB_HCM'),
+    ('CT_111', 'Vương Văn Huy', 19, 'Hậu vệ', 'Việt Nam', 'CLB_HCM'),
+    ('CT_112', 'Erik Sorga', 9, 'Tiền đạo', 'Estonia', 'CLB_HCM'),
+    ('CT_113', 'Nguyễn Thanh Thảo', 7, 'Hậu vệ', 'Việt Nam', 'CLB_HCM'),
+    ('CT_114', 'Lâm Thuận', 22, 'Tiền đạo', 'Việt Nam', 'CLB_HCM'),
+    ('CT_115', 'Phạm Lý Đức', 34, 'Hậu vệ', 'Việt Nam', 'CLB_HCM');

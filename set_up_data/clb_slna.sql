@@ -1,0 +1,22 @@
+INSERT IGNORE INTO CAU_THU (MaCT, TenCT, SoAo, ViTri, QuocTich, MaCLB)
+VALUES
+    ('CT_236', 'Nguyễn Văn Việt', 1, 'Thủ môn', 'Việt Nam', 'CLB_SLNA'),
+    ('CT_237', 'Cao Văn Bình', 25, 'Thủ môn', 'Việt Nam', 'CLB_SLNA'),
+    ('CT_238', 'Hồ Văn Cường', 4, 'Hậu vệ', 'Việt Nam', 'CLB_SLNA'),
+    ('CT_239', 'Lê Nguyên Hoàng', 2, 'Hậu vệ', 'Việt Nam', 'CLB_SLNA'),
+    ('CT_240', 'Trần Đình Hoàng', 15, 'Hậu vệ', 'Việt Nam', 'CLB_SLNA'),
+    ('CT_241', 'Vương Văn Huy', 3, 'Hậu vệ', 'Việt Nam', 'CLB_SLNA'),
+    ('CT_242', 'Benjamin Kuku', 99, 'Tiền đạo', 'Nigeria', 'CLB_SLNA'),
+    ('CT_243', 'Michael Olaha', 19, 'Tiền đạo', 'Nigeria', 'CLB_SLNA'),
+    ('CT_244', 'Đinh Xuân Tiến', 10, 'Tiền vệ', 'Việt Nam', 'CLB_SLNA'),
+    ('CT_245', 'Trần Nam Hải', 17, 'Tiền vệ', 'Việt Nam', 'CLB_SLNA'),
+    ('CT_246', 'Nguyễn Quang Vinh', 16, 'Tiền vệ', 'Việt Nam', 'CLB_SLNA'),
+    ('CT_247', 'Ngô Văn Lương', 20, 'Tiền đạo', 'Việt Nam', 'CLB_SLNA'),
+    ('CT_248', 'Phan Bá Quyền', 21, 'Tiền vệ', 'Việt Nam', 'CLB_SLNA'),
+    ('CT_249', 'Nguyễn Văn Bách', 30, 'Tiền vệ', 'Việt Nam', 'CLB_SLNA'),
+    ('CT_250', 'Hồ Sỹ Sâm', 8, 'Tiền vệ', 'Việt Nam', 'CLB_SLNA'),
+    ('CT_251', 'Lê Văn Đại', 6, 'Hậu vệ', 'Việt Nam', 'CLB_SLNA'),
+    ('CT_252', 'Trần Văn Thành', 22, 'Tiền đạo', 'Việt Nam', 'CLB_SLNA'),
+    ('CT_253', 'Nguyễn Trọng Tuấn', 27, 'Tiền đạo', 'Việt Nam', 'CLB_SLNA'),
+    ('CT_254', 'Lại Văn Lý', 11, 'Tiền vệ', 'Việt Nam', 'CLB_SLNA'),
+    ('CT_255', 'Nguyễn Mai Hoàng', 18, 'Hậu vệ', 'Việt Nam', 'CLB_SLNA');
