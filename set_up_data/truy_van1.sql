@@ -3,7 +3,6 @@ FROM CAU_THU
 WHERE ViTri = N'Tiền đạo'
 AND QuocTich <> N'Việt Nam';
 
-
 SELECT 
     CT1.TenCT AS CauThuGhiBan,
     BT.PhutGhiBan,
@@ -24,7 +23,6 @@ WHERE
     (CLB1.MaCLB = 'CLB_HN' AND CLB2.MaCLB = 'CLB_CAHN')
     OR
     (CLB1.MaCLB = 'CLB_CAHN' AND CLB2.MaCLB = 'CLB_HN');
-    
     
 SELECT 
     CLB.MaCLB,
