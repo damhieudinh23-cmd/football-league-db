@@ -1,3 +1,6 @@
+
+USE football_db;
+
 INSERT IGNORE INTO TRAN_DAU (MaTran, VongDau, NgayThiDau, MaDoiNha, MaDoiKhach, MaSan)
 VALUES
     -- ========================================================================

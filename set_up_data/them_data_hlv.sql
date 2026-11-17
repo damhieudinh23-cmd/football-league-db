@@ -1,3 +1,5 @@
+USE football_db;
+
 INSERT IGNORE INTO HLV (MaHLV, TenHLV, QuocTich, VaiTro, MaCLB)
 VALUES
     ('HLV_01', 'Lê Đức Tuấn', 'Việt Nam', 'HLV Trưởng', 'CLB_HN'),

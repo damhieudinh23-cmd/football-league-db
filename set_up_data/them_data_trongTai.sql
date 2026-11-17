@@ -1,3 +1,5 @@
+USE football_db;
+
 INSERT IGNORE INTO TRONG_TAI (MaTT, TenTT, QuocTich)
 VALUES
     ('TT_01', 'Ngô Duy Lân', 'Việt Nam'),

@@ -1,3 +1,6 @@
+
+USE football_db;
+
 INSERT IGNORE INTO BAN_THANG (MaBT, PhutGhiBan, LoaiBanThang, MaCT_GhiBan, MaCT_KienTao, MaTran) VALUES
 ('BT_0001', 43, 'Đánh đầu', 'CT_040', NULL, 'TD_001'),
 ('BT_0002', 40, 'Đệm bóng cận thành', 'CT_135', 'CT_133', 'TD_002'),

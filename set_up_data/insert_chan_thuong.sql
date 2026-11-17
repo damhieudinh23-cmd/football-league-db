@@ -1,3 +1,6 @@
+
+USE football_db;
+
 INSERT IGNORE INTO CHAN_THUONG (MaCTh, NgayBaoCao, LoaiChanThuong, TGNghiDuKien, MaTran, MaCT) VALUES
 ('CTh_001', '2025-08-15', 'Lật cổ chân', '3 tuần', 'TD_001', 'CT_036'),
 ('CTh_002', '2025-08-17', 'Gãy xương sườn', '2 tháng', 'TD_003', 'CT_190'),

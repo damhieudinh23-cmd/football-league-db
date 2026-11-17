@@ -1,3 +1,6 @@
+
+USE football_db;
+
 INSERT IGNORE INTO THAY_NGUOI (MaTN, PhutThay, MaCT_Vao, MaCT_Ra, MaTran) VALUES
 ('TN_0001', 60, 'CT_151', 'CT_146', 'TD_001'),
 ('TN_0002', 62, 'CT_145', 'CT_139', 'TD_001'),

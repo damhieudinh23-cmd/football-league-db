@@ -1,3 +1,6 @@
+
+USE football_db;
+
 INSERT IGNORE INTO CAU_THU (MaCT, TenCT, SoAo, ViTri, QuocTich, MaCLB)
 VALUES
     ('CT_051', 'Trịnh Xuân Hoàng', 67, 'Thủ môn', 'Việt Nam', 'CLB_DATH'),

@@ -1,3 +1,5 @@
+USE football_db;
+
 INSERT IGNORE INTO SAN_VAN_DONG (MaSan, TenSan, SucChua, DiaChi)
 VALUES
     ('SVD_HD', 'Sân vận động Hàng Đẫy', 22500, 'Hà Nội'),
@@ -14,4 +16,4 @@ VALUES
     ('SVD_HT', 'Sân vận động Hà Tĩnh', 15000, 'Hà Tĩnh');
     
     
-    SELECT * FROM SAN_VAN_DONG;
+SELECT * FROM SAN_VAN_DONG;

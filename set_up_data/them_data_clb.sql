@@ -1,3 +1,5 @@
+USE football_db;
+
 INSERT INTO CLB (MaCLB, TenCLB, MaSan)
 VALUES
     ('CLB_HN', 'Hà Nội FC', 'SVD_HD'),

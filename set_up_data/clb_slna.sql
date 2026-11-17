@@ -1,3 +1,6 @@
+
+USE football_db;
+
 INSERT IGNORE INTO CAU_THU (MaCT, TenCT, SoAo, ViTri, QuocTich, MaCLB)
 VALUES
     ('CT_236', 'Nguyễn Văn Việt', 1, 'Thủ môn', 'Việt Nam', 'CLB_SLNA'),

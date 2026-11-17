@@ -1,3 +1,6 @@
+
+USE football_db;
+
 INSERT IGNORE INTO PHAN_CONG_TRONG_TAI (MaTT, MaTran, VaiTro)
 SELECT 
     CONCAT('TT_', LPAD(((CAST(SUBSTRING(td.MaTran, 4) AS UNSIGNED) * 4 - vt.offset) % 30) + 1, 2, '0')) AS MaTT,

@@ -120,7 +120,7 @@ END$$
 
 -- ============================================================================
 -- BUSINESS RULE 2: Mot cau thu khong the chuyen nhuong thi dau cho qua 2 CLB
---                  trong cung 1 mua giai + Tu dong dong bo CLB moi
+--                  trong cung 1 mua giai + Tu dong dong bo CLB moi & so ao
 -- ============================================================================
 
 DROP TRIGGER IF EXISTS trg_gioi_han_chuyen_nhuong_insert$$
@@ -180,21 +180,57 @@ BEGIN
 END$$
 
 -- Tu dong cap nhat MaCLB moi nhat cho cau thu trong bang CAU_THU
+-- (Neu trung so ao o CLB moi thi tu dong cap so ao nho nhat con trong tu 1..99)
 DROP TRIGGER IF EXISTS trg_cap_nhat_clb_sau_chuyen_nhuong$$
 CREATE TRIGGER trg_cap_nhat_clb_sau_chuyen_nhuong
 AFTER INSERT ON LICH_SU_CHUYEN_NHUONG
 FOR EACH ROW
 BEGIN
     DECLARE v_ngay_moi_nhat DATE;
+    DECLARE v_so_ao_hien_tai INT;
+    DECLARE v_trung_so_ao INT DEFAULT 0;
+    DECLARE v_so_ao_moi INT DEFAULT 1;
 
     SELECT MAX(NgayChuyen) INTO v_ngay_moi_nhat
     FROM LICH_SU_CHUYEN_NHUONG
     WHERE MaCT = NEW.MaCT;
 
     IF NEW.NgayChuyen >= v_ngay_moi_nhat THEN
-        UPDATE CAU_THU
-        SET MaCLB = NEW.MaCLBMoi
+        SELECT SoAo INTO v_so_ao_hien_tai
+        FROM CAU_THU
         WHERE MaCT = NEW.MaCT;
+
+        -- Kiem tra xem so ao hien tai da co ai mac o CLB moi chua
+        SELECT COUNT(*) INTO v_trung_so_ao
+        FROM CAU_THU
+        WHERE MaCLB = NEW.MaCLBMoi
+          AND SoAo = v_so_ao_hien_tai
+          AND MaCT <> NEW.MaCT;
+
+        IF v_trung_so_ao = 0 THEN
+            -- Khong trung: giu nguyen so ao cu, chi doi MaCLB
+            UPDATE CAU_THU
+            SET MaCLB = NEW.MaCLBMoi
+            WHERE MaCT = NEW.MaCT;
+        ELSE
+            -- Bi trung: tim so ao nho nhat (1..99) chua ai dung o CLB moi
+            WHILE v_so_ao_moi <= 99 AND EXISTS (
+                SELECT 1 FROM CAU_THU
+                WHERE MaCLB = NEW.MaCLBMoi AND SoAo = v_so_ao_moi
+            ) DO
+                SET v_so_ao_moi = v_so_ao_moi + 1;
+            END WHILE;
+
+            IF v_so_ao_moi > 99 THEN
+                SIGNAL SQLSTATE '45000'
+                SET MESSAGE_TEXT = 'Loi nghiep vu: CLB moi da het so ao trong (1-99)!';
+            END IF;
+
+            UPDATE CAU_THU
+            SET MaCLB = NEW.MaCLBMoi,
+                SoAo  = v_so_ao_moi
+            WHERE MaCT = NEW.MaCT;
+        END IF;
     END IF;
 END$$
 

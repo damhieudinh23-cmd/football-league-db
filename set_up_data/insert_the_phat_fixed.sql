@@ -1,3 +1,6 @@
+
+USE football_db;
+
 INSERT IGNORE INTO THE_PHAT (MaThe, LoaiThe, PhutPhat, MaTran, MaCT) VALUES
 ('TP_0001', 'Vàng', 18, 'TD_001', 'CT_032'),
 ('TP_0002', 'Vàng', 70, 'TD_001', 'CT_033'),
